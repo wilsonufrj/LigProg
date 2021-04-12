@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]){
     printf("Hello World (pid %d)\n",(int)getpid());
-    int rc = 0;
+    int rc = fork();
     if(rc<0){
             fprintf(stderr,"fork failed\n");
             exit(1);
