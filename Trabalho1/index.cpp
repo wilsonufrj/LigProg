@@ -46,6 +46,7 @@ int main(){
                 break;
             default:
                 cout<<"Opcao Invalida"<<endl;
+                break;
         }
 
         if(opcaoMenu==5)
