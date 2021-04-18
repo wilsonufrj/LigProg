@@ -16,7 +16,7 @@ int main(){
     cout<<"\t| 5 - SAIR                                             |"<<endl;
     cout<<"\t|------------------------------------------------------|"<<endl;
     int opcaoMenu;
-    //Nacional Brasil;
+    Nacional Brasil;
 
     while(1){
         //Pesquisar outro metodo de entrada
@@ -27,20 +27,20 @@ int main(){
                 //Brasil.mostrarEvolucaoObitoNacionalEstadual();
                 break;
             case 1:
-                cout<<"mostrarEstatisticasEstados()"<<endl;
-                //Brasil.mostrarEstatisticasEstados();
+                //cout<<"mostrarEstatisticasEstados()"<<endl;
+                Brasil.mostrarEstatisticasEstados();
                 break;
             case 2:
-                cout<<"mostratEstatisticaBrasil()"<<endl;
-                //Brasil.mostratEstatisticaBrasil();
+                //cout<<"mostratEstatisticaBrasil()"<<endl;
+                //Brasil.mostrarEstatisticaBrasil();
                 break;
             case 3:
                 cout<<"mostrarEstadosLimites"<<endl;
                 //Brasil.estadosLimites();
                 break;
             case 4:
-                cout<<"mostrarNumeroObitosNacionalEstadual"<<endl;
-                //Brasil.mostrarNumeroObitosNacionalEstadual();
+                //DONE
+                Brasil.mostrarNumeroObitosNacionalEstadual();
                 break;
             case 5:
                 break;

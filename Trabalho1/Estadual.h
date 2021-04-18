@@ -1,16 +1,25 @@
-#include<array>
+#include<vector>
+#include<string>
+using namespace std;
 class Estadual{
     public:
-        //Soma as mortes 
+        Estadual(const int[],int,string);
         int somaMortes();
         double calculaMediaMovel();
+        string getNomeEstado();
+        vector<double> getMediaMovel();
+
     private:
-        const static int dias = 10;
         const int diasDaMedia = 3;
         //Array que define a quantidade de mortes por dia
-        static int mortesPorDia[dias];
-        //Array que armazena as médias moveis com o passar do terceiro dia
-        int arrayMediasMoveis[5];
-};
+        vector<int> mortesPorDia;
+        //Array que armazena as médias moveis
+        vector<double> mediaMovel;
+        string nomeEstado;
 
-//Não fazer o array de morte como constante pois o sistema não será dinamico
+        void setNomeEstado(string);
+        void setMortesPorDia(const int[],int);
+        void setMediaMovel();
+
+
+};

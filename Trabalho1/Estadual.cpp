@@ -1,19 +1,13 @@
 #include"Estadual.h"
 #include<iostream>
-#include<array>
 
 using namespace std;
 
-int Estadual::mortesPorDia[dias] = {1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1};
+Estadual::Estadual(const int vetorMortes[],int quantidadeDias,string nome){
+    setMortesPorDia(vetorMortes,quantidadeDias);
+    setNomeEstado(nome);
+    setMediaMovel();
+}
 
 //Funcionando
 int Estadual::somaMortes(){
@@ -24,14 +18,24 @@ int Estadual::somaMortes(){
     return total;
 }
 
-//So calcula a media
-double Estadual::calculaMediaMovel(){
-    double media;
-    for(int i=0;i<diasDaMedia;i++){
-            cout<<"Valor "<<mortesPorDia[(dias-1)-i]<<endl;
-        media += mortesPorDia[(dias-1)-i];
+void Estadual::setMortesPorDia(const int mortes[], int quantidade){
+    for(int i=0;i<quantidade;i++){
+        mortesPorDia.push_back(mortes[i]);
     }
-    cout<<"Total Media: "<<media<<endl;
-
-    return media/3;
 }
+
+void Estadual::setMediaMovel(){
+    mediaMovel.push_back(mortesPorDia[1]);
+    mediaMovel.push_back((mortesPorDia[1]+mortesPorDia[2])/2);
+    for(int unsigned i=2; i<mortesPorDia.size();i++){
+        double media = (mortesPorDia[i-2]+mortesPorDia[i-1]+mortesPorDia[i])/3;
+        mediaMovel.push_back(media);
+    }
+}
+
+void Estadual::setNomeEstado(string nome){
+    nomeEstado = nome;
+}
+
+string Estadual::getNomeEstado(){return nomeEstado;}
+vector<double> Estadual::getMediaMovel(){return mediaMovel;}
