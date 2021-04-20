@@ -14,7 +14,16 @@ class Nacional{
 
     private:
         void setEstatistica();
-        void setTendencia();
+        void setTendenciaPais();
+        void setMortesPorDiasPais();
+        void setMediaMovelPais();
+        void setPorcentagemTendenciaPais(double);
+        void printaTendencia();
+        //Somente para debug
+        void printaMediaMovelPais();
+        void printaMortesPorDiaPais();
+        int getTendenciaPais();
+        double getPorcentagemTendenciaPais();
         
         Estadual estados[QUANTIDADE_ESTADO]={
             Estadual(RIO,DIAS_VERIFICADOS,"Rio"),
@@ -23,9 +32,18 @@ class Nacional{
             Estadual(CEARA,DIAS_VERIFICADOS,"Ceara")
         };
         int totalBrasil;
+
         vector<Estadual> alta;
         vector<Estadual> estavel;
         vector<Estadual> baixa;
+
+        vector<int> mortesPorDiaPais;
+        vector<double> mediaMovelPais;
+
+        int tendenciaPais;
+        double porcentagemTendenciaPais;
+
+        
         
     public:
         Nacional();

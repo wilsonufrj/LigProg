@@ -52,16 +52,16 @@ void Estadual::setTendencia(){
     //Alta
     if(porcentagem*100 >= 15){
         tendencia =1;
-        setPorcentagemTendencia(porcentagem);
+        setPorcentagemTendencia(porcentagem*100);
     }
     else{
         if(porcentagem*100 <= -15){ //Baixa
             tendencia = -1;
-            setPorcentagemTendencia(porcentagem);
+            setPorcentagemTendencia(porcentagem*100);
         }
         else{
-            porcentagem = 0;
-            setPorcentagemTendencia(porcentagem);
+            tendencia = 0;
+            setPorcentagemTendencia(porcentagem*100);
         } //Estabilidade
     }
 }
@@ -80,3 +80,4 @@ string Estadual::getNomeEstado(){return nomeEstado;}
 vector<double> Estadual::getMediaMovel(){return mediaMovel;}
 int Estadual::getTendencia(){return tendencia;}
 double Estadual::getPorcentagemTendencia(){return porcentagemTendencia;}
+vector<int> Estadual::getMortesPorDia(){ return mortesPorDia;}

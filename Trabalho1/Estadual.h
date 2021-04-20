@@ -16,6 +16,7 @@ class Estadual{
         vector<double> getMediaMovel();
         int getTendencia();
         double getPorcentagemTendencia();
+        vector<int> getMortesPorDia();
         //Metodo de teste
         void printMediaMovel();
 

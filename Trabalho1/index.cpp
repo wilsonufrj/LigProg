@@ -9,12 +9,12 @@ int main(){
     cout<<"\t                        MENU                           "<<endl;
     cout<<"\t|------------------------------------------------------|"<<endl;
     cout<<"\t| PRESSIONA UMA DAS OPCOES ABAIXO                      |"<<endl;
-    cout<<"\t| 0 - Exibir a media movel no Brasil e nos estados     |"<<endl;
-    cout<<"\t| 1 - Exibir situacao nos estados                      |"<<endl;
-    cout<<"\t| 2 - Exibir situacao no Brasil                        |"<<endl;
-    cout<<"\t| 3 - Exibir estados com maior alta e menor baixa      |"<<endl;
-    cout<<"\t| 4 - Exibir numero de obitos                          |"<<endl;
-    cout<<"\t| 5 - SAIR                                             |"<<endl;
+    cout<<"\t| 1 - Exibir a media movel no Brasil e nos estados     |"<<endl;
+    cout<<"\t| 2 - Exibir situacao nos estados                      |"<<endl;
+    cout<<"\t| 3 - Exibir situacao no Brasil                        |"<<endl;
+    cout<<"\t| 4 - Exibir estados com maior alta e menor baixa      |"<<endl;
+    cout<<"\t| 5 - Exibir numero de obitos                          |"<<endl;
+    cout<<"\t| 0 - SAIR                                             |"<<endl;
     cout<<"\t|------------------------------------------------------|"<<endl;
     string entrada;
     int opcaoMenu;
@@ -25,34 +25,35 @@ int main(){
         getline(cin,entrada);
         opcaoMenu = stoi(entrada);
         switch(opcaoMenu){
-            case 0:
-                cout<<"mostrarEvolucaoObitoNacionalEstadual"<<endl;
-                //Brasil.mostrarEvolucaoObitoNacionalEstadual();
-                break;
             case 1:
+            //DONE
+                Brasil.mostrarEvolucaoObitoNacionalEstadual();
+                break;
+            case 2:
                 //DONE
                 Brasil.mostrarEstatisticasEstados();
                 break;
-            case 2:
-                //cout<<"mostratEstatisticaBrasil()"<<endl;
-                //Brasil.mostrarEstatisticaBrasil();
-                break;
             case 3:
-                //DONE
-                Brasil.estadosLimites();
+                Brasil.mostrarEstatisticaBrasil();
                 break;
             case 4:
                 //DONE
-                Brasil.mostrarNumeroObitosNacionalEstadual();
+                Brasil.estadosLimites();
                 break;
             case 5:
+                //DONE
+                Brasil.mostrarNumeroObitosNacionalEstadual();
                 break;
+
+            case 0:
+                break;
+
             default:
                 cout<<"Opcao Invalida"<<endl;
                 break;
         }
 
-        if(opcaoMenu==5)
+        if(opcaoMenu==0)
             break;
         
     }
