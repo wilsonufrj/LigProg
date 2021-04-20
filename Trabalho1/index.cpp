@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 #include"Nacional.h"
 
 using namespace std;
@@ -15,19 +16,21 @@ int main(){
     cout<<"\t| 4 - Exibir numero de obitos                          |"<<endl;
     cout<<"\t| 5 - SAIR                                             |"<<endl;
     cout<<"\t|------------------------------------------------------|"<<endl;
+    string entrada;
     int opcaoMenu;
     Nacional Brasil;
 
     while(1){
         //Pesquisar outro metodo de entrada
-        cin>>opcaoMenu;
+        getline(cin,entrada);
+        opcaoMenu = stoi(entrada);
         switch(opcaoMenu){
             case 0:
                 cout<<"mostrarEvolucaoObitoNacionalEstadual"<<endl;
                 //Brasil.mostrarEvolucaoObitoNacionalEstadual();
                 break;
             case 1:
-                //cout<<"mostrarEstatisticasEstados()"<<endl;
+                //DONE
                 Brasil.mostrarEstatisticasEstados();
                 break;
             case 2:
@@ -35,8 +38,8 @@ int main(){
                 //Brasil.mostrarEstatisticaBrasil();
                 break;
             case 3:
-                cout<<"mostrarEstadosLimites"<<endl;
-                //Brasil.estadosLimites();
+                //DONE
+                Brasil.estadosLimites();
                 break;
             case 4:
                 //DONE

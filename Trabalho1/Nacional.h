@@ -1,19 +1,34 @@
+#ifndef NACIONAL_H
+#define NACIONAL_H
+
 #include"Estadual.h"
 #include"Dados.h"
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
 class Nacional{
 
+    static void fimFuncao();
+
     private:
+        void setEstatistica();
+        void setTendencia();
+        
         Estadual estados[QUANTIDADE_ESTADO]={
             Estadual(RIO,DIAS_VERIFICADOS,"Rio"),
             Estadual(SAO_PAULO,DIAS_VERIFICADOS,"Sao Paulo"),
-            Estadual(MINAS_GERAIS,DIAS_VERIFICADOS,"Minas Gerais")
+            Estadual(MINAS_GERAIS,DIAS_VERIFICADOS,"Minas Gerais"),
+            Estadual(CEARA,DIAS_VERIFICADOS,"Ceara")
         };
-
+        int totalBrasil;
+        vector<Estadual> alta;
+        vector<Estadual> estavel;
+        vector<Estadual> baixa;
+        
     public:
+        Nacional();
         //Mostra media movel no brasil e nos estados individualmente
         void mostrarEvolucaoObitoNacionalEstadual();
         //Mostra quais estados estão com a média móvel alta, em estabilidade ou em alta
@@ -28,4 +43,4 @@ class Nacional{
         void mostrarNumeroObitosNacionalEstadual();
 };
 
-
+#endif
