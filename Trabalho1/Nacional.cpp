@@ -12,12 +12,12 @@ Nacional::Nacional(){
 
 void Nacional::mostrarEvolucaoObitoNacionalEstadual(){
     printaTendencia();
-    cout<<" com "<<getPorcentagemTendenciaPais()<<" % na media movel de casos"<<endl;
+    cout<<fixed<<setprecision(2)<<"com "<<getPorcentagemTendenciaPais()<<" % na media movel de casos"<<endl;
 
     cout<<"\nESTADOS EM ALTA"<<endl;
     for(int unsigned i=0;i<alta.size();i++){
         cout<<alta[i].getNomeEstado()<<
-        " com "<<alta[i].getPorcentagemTendencia()<<
+        " com "<<fixed<<setprecision(2)<<alta[i].getPorcentagemTendencia()<<
         " % na media movel de casos"<<endl;
     }
     cout<<"\nESTADOS EM ESTABILIDADE"<<endl;
@@ -38,10 +38,11 @@ void Nacional::mostrarEvolucaoObitoNacionalEstadual(){
 
 void Nacional::mostrarNumeroObitosNacionalEstadual(){
     int totalBrasil=0;
+    cout<<"\t\t\tTOTAL DO NUMERO DE OBITOS"<<endl;
     for(Estadual estado:estados){
             totalBrasil+=estado.somaMortes();   
             cout<<"Estado: "<<estado.getNomeEstado()
-            <<"\tMortes: "<<estado.somaMortes()<<endl;
+            <<"\nTotal de Mortes: "<<estado.somaMortes()<<endl;
     }
 
     cout<<"Total de mortos no Brasil: "<<totalBrasil<<endl;
@@ -50,40 +51,42 @@ void Nacional::mostrarNumeroObitosNacionalEstadual(){
 }
 
 void Nacional::mostrarEstatisticasEstados(){
-    //cout<<estados[0].getNomeEstado()<<endl;
-   // cout<<estados[0].getTendencia()<<"\n\n"<<endl;
-    cout<<"ESTADOS EM ALTA"<<endl;
+        cout<<"\t\t\tESTATISTICAS DOS ESTADOS"<<endl;
+    cout<<"ESTADO(S) EM ALTA"<<endl;
     for(int unsigned i=0;i<alta.size();i++){
-        cout<<alta[i].getNomeEstado()<<endl;
+        cout<<"\t-"<<alta[i].getNomeEstado()<<endl;
     }
-    cout<<"ESTADOS EM ESTABILIDADE"<<endl;
+    cout<<"ESTADO(S) EM ESTABILIDADE"<<endl;
     for(int unsigned i=0;i<estavel.size();i++){
-        cout<<estavel[i].getNomeEstado()<<endl;
+        cout<<"\t-"<<estavel[i].getNomeEstado()<<endl;
     }
-    cout<<"ESTADOS EM BAIXA"<<endl;
+    cout<<"ESTADO(S) EM BAIXA"<<endl;
     for(int unsigned i=0;i<baixa.size();i++){
-        cout<<baixa[i].getNomeEstado()<<endl;
+        cout<<"\t-"<<baixa[i].getNomeEstado()<<endl;
     }
     fimFuncao();
 }
 
 void Nacional::mostrarEstatisticaBrasil(){
+        cout<<"\t\t\tESTATISTICAS NO BRASIL"<<endl;
+
     printaTendencia();
     fimFuncao();
 }
 
 void Nacional::printaTendencia(){
     if(tendenciaPais<0)
-        cout<<"Brasil em baixa de casos"<<endl;
+        cout<<"Brasil com BAIXA de casos"<<endl;
     else{
         if(tendenciaPais>0)
-            cout<<"Brasil em alta de casos"<<endl;
+            cout<<"Brasil com ALTA de casos"<<endl;
         else
-            cout<<"Brasil em estabilidade de casos"<<endl;
+            cout<<"Brasil em ESTABILIDADE de casos"<<endl;
     }
 }
 
 void Nacional::estadosLimites(){
+    cout<<"\t\t\tESTADOS LIMITES"<<endl;
     double maiorAlta=0,menorBaixa=0;
     string estadoMaiorAlta,estadoMenorBaixa; 
     for(Estadual estado:alta){
@@ -96,7 +99,7 @@ void Nacional::estadosLimites(){
             estadoMenorBaixa = estado.getNomeEstado(); 
         }
     }
-    cout<<"ESTADO MAIOR ALTA : "<<estadoMaiorAlta<<endl;
+    cout<<"ESTADO MAIOR ALTA  : "<<estadoMaiorAlta<<endl;
     cout<<"ESTADO MENOR BAIXA : "<<estadoMenorBaixa<<endl;
 
     fimFuncao();
@@ -104,17 +107,12 @@ void Nacional::estadosLimites(){
 
 void Nacional::setEstatistica(){
     for(Estadual estado:estados){
-        /*cout<<"Nome: "<<estado.getNomeEstado()
-        <<"\tTendencia: "<<estado.getTendencia()<<endl;*/
         if(estado.getTendencia()>0){
-            //cout<<"Nome: "<<estado.getNomeEstado()<<endl;
             alta.push_back(estado);
         }else{
             if(estado.getTendencia()<0){
-               // cout<<"Nome: "<<estado.getNomeEstado()<<endl;
                 baixa.push_back(estado);
             }else{
-               // cout<<"Nome: "<<estado.getNomeEstado()<<endl;
                 estavel.push_back(estado);
             }
         }
@@ -143,11 +141,7 @@ void Nacional::setMediaMovelPais(){
 
 void Nacional::setTendenciaPais(){
     double porcentagem=0;
-    /*cout<<"Ultima media movel"<<mediaMovel[mediaMovel.size()-1]<<
-    "Penultima mediaMovel "<< mediaMovel[mediaMovel.size()-2]<<
-    endl;*/
     porcentagem = double((mediaMovelPais[mediaMovelPais.size()-1] - mediaMovelPais[mediaMovelPais.size()-2])/(mediaMovelPais[mediaMovelPais.size()-2]));
-    cout<<"Porcentagem: "<<porcentagem*100<<endl;
     //Alta
     if(porcentagem*100 >= 15){
         tendenciaPais =1;
@@ -173,23 +167,8 @@ void Nacional::fimFuncao(){
     cout<<"-------------------------------------------------------\n\n";
 }
 
-void Nacional::printaMediaMovelPais(){
-    cout<<"Media Movel"<<endl;
-    for(int unsigned i=0;i<mediaMovelPais.size();i++){
-        cout<<"Dia"<<i<<": "<<mediaMovelPais[i]<<endl;
-    }
 
-    cout<<"Tendecia: "<<getTendenciaPais()<<" e Porcentagem:  "<<getPorcentagemTendenciaPais()<<endl;
-    fimFuncao();
-}
-
-void Nacional::printaMortesPorDiaPais(){
-    cout<<"Mortes Por Dia"<<endl;
-    for(int unsigned i=0;i<mortesPorDiaPais.size();i++){
-        cout<<"Dia"<<i<<": "<<mortesPorDiaPais[i]<<endl;
-    }
-    fimFuncao();
-}
 
 int Nacional::getTendenciaPais(){return tendenciaPais;}
+
 double Nacional::getPorcentagemTendenciaPais(){return porcentagemTendenciaPais;}

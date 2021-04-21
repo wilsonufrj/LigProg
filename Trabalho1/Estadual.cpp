@@ -44,11 +44,7 @@ void Estadual::setNomeEstado(string nome){
 
 void Estadual::setTendencia(){
     double porcentagem;
-    /*cout<<"Ultima media movel"<<mediaMovel[mediaMovel.size()-1]<<
-    "Penultima mediaMovel "<< mediaMovel[mediaMovel.size()-2]<<
-    endl;*/
     porcentagem = double((mediaMovel[mediaMovel.size()-1] - mediaMovel[mediaMovel.size()-2])/(mediaMovel[mediaMovel.size()-2]));
-    //cout<<"Porcentagem: "<<porcentagem<<endl;
     //Alta
     if(porcentagem*100 >= 15){
         tendencia =1;
@@ -70,14 +66,13 @@ void Estadual::setPorcentagemTendencia(double porcentagem){
     porcentagemTendencia = porcentagem;
 }
 
-void Estadual::printMediaMovel(){
-    for(int unsigned i =0;i< mediaMovel.size();i++){
-        cout<<mediaMovel[i]<<endl;
-    }
-}
 
 string Estadual::getNomeEstado(){return nomeEstado;}
+
 vector<double> Estadual::getMediaMovel(){return mediaMovel;}
+
 int Estadual::getTendencia(){return tendencia;}
+
 double Estadual::getPorcentagemTendencia(){return porcentagemTendencia;}
+
 vector<int> Estadual::getMortesPorDia(){ return mortesPorDia;}

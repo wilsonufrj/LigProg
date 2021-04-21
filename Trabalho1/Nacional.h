@@ -5,6 +5,7 @@
 #include"Dados.h"
 #include<iostream>
 #include<vector>
+#include<iomanip>
 
 using namespace std;
 
@@ -19,9 +20,7 @@ class Nacional{
         void setMediaMovelPais();
         void setPorcentagemTendenciaPais(double);
         void printaTendencia();
-        //Somente para debug
-        void printaMediaMovelPais();
-        void printaMortesPorDiaPais();
+        
         int getTendenciaPais();
         double getPorcentagemTendenciaPais();
         
