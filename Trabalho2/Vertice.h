@@ -6,10 +6,15 @@
 using namespace std;
 
 class Vertice{
+    public:
+        Vertice(string);
+        string getRotulo();
+        void somaContador();
+        int getContador();
+
     private:
         string rotulo;
-    public:
-        string getRotulo();
+        int contador;
 };
 
 #endif

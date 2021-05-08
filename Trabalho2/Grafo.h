@@ -4,17 +4,29 @@
 
 #include"Aresta.h"
 #include<fstream>
+#include<vector>
+#include<iostream>
+
+using namespace std;
 
 class Grafo{
     public:
-        void arestaComum();
-        void insereAresta();
+        Grafo();
+        void arestaComum(int);
+        void insereAresta(Aresta*); //OK
+        void insereVertice(Vertice*);
+        //Retorna o vertice com o contador maior
         void verticePopular();
 
         void lerArquivo();
+        void quebraLinha(string);
     private:
-        fstream FILE;
 
+        fstream FILE;
+        string nomeArquivo;
+        vector<Aresta*> arestas;
+        vector<Vertice*> vertices;
+        
 };
 
 #endif
