@@ -1,0 +1,6 @@
+10
+4
+Cacadora,Brasil,2
+GameofThrones,Fox,10
+Monarca,FOX,10
+Mulan,Disney,7

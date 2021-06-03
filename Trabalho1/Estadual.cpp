@@ -12,7 +12,7 @@ Estadual::Estadual(const int vetorMortes[],int quantidadeDias,string nome){
     
 }
 
-//Funcionando
+
 int Estadual::somaMortes(){
     int total=0;
     for(int dias: mortesPorDia){
