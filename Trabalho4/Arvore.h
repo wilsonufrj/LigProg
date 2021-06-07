@@ -142,7 +142,10 @@ No<T>* Arvore<T>::buscaArvore(No<T>* no, const string nome){
 //FUNCIONANDO
 template<class T>
 void Arvore<T>::printaArvore(){
-    recursaoPrinta(raiz);
+    if(raiz==NULL){
+        cout<<"Arvore Vazia"<<endl;
+    }else
+        recursaoPrinta(raiz);
 }
 
 template<class T>

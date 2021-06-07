@@ -4,10 +4,12 @@
 #include"Paciente.h"
 #include"Arvore.h"
 
+using namespace std;
+
 class Cadastro{
     public:
-    void inserePaciente(Paciente&);
-    void buscaPaciente(string);
+    void inserePaciente();
+    void buscaPaciente();
     void imprimeArvore();
 
     private:

@@ -2,19 +2,26 @@
 #define PACIENTE_H
 
 #include<string>
+#include<iostream>
 
 using namespace std;
 
+
+
 class Paciente{
 
+    friend ostream& operator<<(ostream&, Paciente&);
+
    public:
-    Paciente(string nome):nome(nome){};
-    string getNomePaciente();
+    Paciente(string,string,string);
+
+    virtual string getNomePaciente();
+    virtual string getIdade();
+    virtual string getDoenca();
 
     private:
-    string nome;
-    int idade;
-    string doenca;
+    string nome,idade,doenca;
+    
 };
 
 
