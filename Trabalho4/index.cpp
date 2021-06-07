@@ -1,59 +1,26 @@
 #include"Cadastro.h"
-#include"No.h"
-#include"Arvore.h"
 #include<iostream>
 
 using namespace std;
 
-class Paciente{
-    public:
-    Paciente(string nome):nome(nome){};
-    private:
-    string nome;
-};
-
 int main(){
     
-    No<Paciente> paciente("Gabrielle");
-    No<Paciente> paciente2("Caio");
-    No<Paciente> paciente3("Bruna");
-    No<Paciente> paciente4("Wilson");
-    No<Paciente> paciente5("Zambeze");
+    Cadastro cadastro;
 
-
-
-    Arvore<Paciente> arv("Teste");
+    Paciente paciente("Joao");
+    Paciente paciente2("Maria");
     
+    cadastro.inserePaciente(paciente);
+    cadastro.inserePaciente(paciente2);
 
-    //Teste para o template No
-    /* string var2 = "From de other side";
-    string *ptr2 = &var2;
+    cadastro.buscaPaciente("Carlos");
+      
 
-    noInt.setEsq(ptr);
-    noInt.setDir(ptr2);
+    cadastro.buscaPaciente("Joao");
 
-    cout<<noInt.getValor()<<endl;
-    if(noInt.getEsq()!=NULL){
-        cout<<"Endereco: "<<noInt.getEsq()<<endl<<
-        "Valor: "<< *noInt.getEsq()<<endl;
-    }
-
-    if(noInt.getDir()!=NULL){
-        cout<<"Endereco: "<<noInt.getDir()<<endl<<
-        "Valor: "<< *noInt.getDir()<<endl;
-    } */
-
-    arv+=paciente;
-    arv+=paciente2;
-    arv+=paciente3;
-    arv+=paciente4;
-    arv+=paciente5;
-
+    cadastro.imprimeArvore();
     
-    /* cout<<"Raiz: "<<arv.getRaiz()->getValor()<<endl<<
-    "No esquerdo: "<<*arv.getEsq()<<endl; */
-
-    arv.printaArvore();
+    
 
     return 0;
 }

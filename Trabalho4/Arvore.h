@@ -2,18 +2,17 @@
 #define ARVORE_H
 
 #include<iostream>
+#include"No.h"
 using namespace std;
 
 template<class T>
 class Arvore:public No<T>{
 
     public:
-    //Ver se essa valor tem que ser string para comparar
-    Arvore(string valor);
-
+    Arvore();
 
     No<T>* operator+=( No<T>&);
-    No<T>* operator()(string&);
+    No<T>* operator()(const string&);
 
     void printaArvore();
     No<T>* getRaiz();
@@ -21,18 +20,18 @@ class Arvore:public No<T>{
     private:
     No<T>* raiz;
     No<T>* insereOBJ(No<T>*,string);
-    No<T>* emOrdem(No<T>* ,string); //Busca
+    No<T>* buscaArvore(No<T>* ,const string); //Busca
+    void recursaoPrinta(No<T>*);
 };
 
 template<class T>
-Arvore<T>::Arvore(string valor):No<T>(valor){
-    raiz = NULL;
-}
+Arvore<T>::Arvore():raiz(NULL){}
 
 template<class T>
 No<T>* Arvore<T>::getRaiz(){return raiz;}
 
 //Adicionar um elemento na arvore
+//FUNCIONANDO
 template<class T>
 No<T>* Arvore<T>::operator+=( No<T> &objeto){
 
@@ -59,7 +58,7 @@ No<T>* Arvore<T>::insereOBJ(No<T> *no, string valor){
         if(no->getEsq() == NULL){
             No<T> *newNo = new No<T>(valor);
             no->setEsq(newNo);
-            return newNo; //TEM QUE MUDAR PARA newNo
+            return newNo; 
         }else
             insereOBJ(no->getEsq(),valor);
     }else{
@@ -67,7 +66,7 @@ No<T>* Arvore<T>::insereOBJ(No<T> *no, string valor){
             if(no->getDir()==NULL){
                 No<T>* newNo = new No<T>(valor);
                 no->setDir(newNo);
-                return newNo;//TEM QUE MUDAR PARA newNo
+                return newNo;
             }else
                 insereOBJ(no->getDir(),valor);
         }
@@ -77,39 +76,90 @@ No<T>* Arvore<T>::insereOBJ(No<T> *no, string valor){
 }
 
 //Fazer a busca na arvore
-//Passar o nó raiz e verificar ao percorrer os valores dos No são iguais ao buscado
-//NAO TESTADO
 template<class T>
-No<T>* Arvore<T>::operator()( string &nome){
+No<T>* Arvore<T>::operator()(const string &nome){
     if(raiz!=NULL){
-        No<T> aux = emOrdem(raiz,nome);
-        if(aux!= NULL)
+        No<T>* aux = buscaArvore(raiz,nome);
+        if(aux!=NULL){
             return aux;
+        }
     }
     return NULL;
 }
 
-//Busca de um no
-//NAO TESTADO
+
+//FUNCIONANDO
 template<class T>
-No<T>* Arvore<T>::emOrdem(No<T>* no,string nome){
-    if(no!=NULL){
-        if(nome.compare(no->getValor())==0){
-            return no;
+No<T>* Arvore<T>::buscaArvore(No<T>* no, const string nome){
+    No<T>* auxNoEsq = no->getEsq();
+    No<T>* auxNoDir = no->getDir();
+    No<T>* retorno=NULL;
+    bool naoAchou=false,mudouNo;
+    
+        while(naoAchou==false){
+            mudouNo=false;
+            if(nome.compare(no->getValor())==0){
+                retorno = no;
+                break;
+            }
+
+            if(nome.compare(no->getValor())<0){
+                if(no->getEsq()!=NULL){
+                    no = no->getEsq();
+                    mudouNo = true;
+                }
+
+                if(no->getEsq()!=NULL)
+                    auxNoEsq = no->getEsq();
+                if(no->getDir()!=NULL)
+                    auxNoDir = no->getDir();
+            }
+
+
+            else{
+                if(no->getDir()!=NULL){
+                    no = no->getDir();
+                    mudouNo = true;
+                }
+
+                if(no->getEsq()!=NULL)
+                    auxNoEsq = no->getEsq();
+                if(no->getDir()!=NULL)
+                    auxNoDir = no->getDir();
+            }
+
+            if(mudouNo==false){
+                naoAchou=true;
+            }
         }
-        else{
-            emOrdem(no->getEsq());
-            emOrdem(no->getDir());
-        }
+
+    if(retorno!=NULL){
+        return retorno;
     }
+    return NULL;
 }
 
 //FUNCIONANDO
 template<class T>
 void Arvore<T>::printaArvore(){
-    cout<<*raiz;
+    recursaoPrinta(raiz);
 }
 
-
+template<class T>
+void Arvore<T>::recursaoPrinta(No<T> *no){
+    cout<<*no;
+    if(no->getEsq()==NULL){
+        cout<<"No Esquerdo: NULL"<<endl;
+    }else{
+        cout<<"No Esquerdo: "<<endl;
+        recursaoPrinta(no->getEsq());
+    }
+    if(no->getDir()==NULL){
+        cout<<"No Direito: NULL"<<endl;
+    }else{
+        cout<<"No Direito: "<<endl;
+        recursaoPrinta(no->getDir());
+    }
+}
 
 #endif

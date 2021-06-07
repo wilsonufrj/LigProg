@@ -9,16 +9,6 @@ using namespace std;
 template<class T> class No;
 template<class T> ostream& operator<<(ostream& saida, No<T> &no){
     cout<<"Valor: "<<no.getValor()<<endl;
-    if(no.getEsq()==NULL){
-        cout<<"No Esquerdo: NULL"<<endl;
-    }else{
-        cout<<"No Esquerdo: "<<endl<<*no.getEsq()<<endl;
-    }
-    if(no.getDir()==NULL){
-        cout<<"No Direito: NULL"<<endl;
-    }else{
-        cout<<"No Direito: "<<endl<<*no.getDir()<<endl;
-    }
     return saida;
 }
 
@@ -27,7 +17,7 @@ template<class T>
 class No{
 
     public:
-    No(string);
+    No(string=" ");
     ~No();
     void setEsq(No<T>*);
     void setDir(No<T>*);
