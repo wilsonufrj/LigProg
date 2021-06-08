@@ -8,7 +8,7 @@ using namespace std;
 
 template<class T> class No;
 template<class T> ostream& operator<<(ostream& saida, No<T> &no){
-    cout<<"Valor: "<<no.getValor()<<endl;
+    cout<<no.getValor()<<endl;
     return saida;
 }
 

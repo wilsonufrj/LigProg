@@ -10,7 +10,7 @@ using namespace std;
 
 class Paciente{
 
-    friend ostream& operator<<(ostream&, Paciente&);
+   friend ostream& operator<<(ostream&, Paciente&);
 
    public:
     Paciente(string,string,string);

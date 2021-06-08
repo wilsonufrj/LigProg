@@ -1,5 +1,6 @@
 #include"Cadastro.h"
 
+
 //FUNCIONANDO
 void Cadastro::inserePaciente(){
     string nome,idade,doenca;
@@ -13,23 +14,32 @@ void Cadastro::inserePaciente(){
     Paciente *paciente = new Paciente(nome,idade,doenca);
     
     No<Paciente> *auxPaciente = new No<Paciente>(paciente->getNomePaciente());
-    arvorePaciente+=*auxPaciente;
-
+    //ESTRANHO
+    if((arvorePaciente+=*auxPaciente)==NULL){
+        throw Erros();
+    };
+    cout<<"--------DADOS CADASTRADOS---------"<<endl;
     cout<<*paciente;
 }
 
-//FUNCIONANDO
+//FUNCIONANDO 
 void Cadastro::buscaPaciente(){
     string nome;
     cout<<"Qual o nome do paciente desejado"<<endl;
     getline(cin,nome);
     if(arvorePaciente(nome)==NULL){
-        cout<<"Nome nao esta cadastrado"<<endl;
+        throw Erros();
     }else
-        cout<<"Acheio o paciente"<<endl;
+        cout<<*arvorePaciente(nome)<<endl;
+    
+    
 }
 
 //Incompleta
 void Cadastro::imprimeArvore(){
     arvorePaciente.printaArvore();
+}
+
+const char* Cadastro::what()const throw(){
+    return "Erro na execucao da funcao";
 }

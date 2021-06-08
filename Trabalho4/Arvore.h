@@ -43,10 +43,8 @@ No<T>* Arvore<T>::operator+=( No<T> &objeto){
         No<T>* aux =insereOBJ(raiz, objeto.getValor());
         if(aux!=NULL){
            return aux;
-
         }
     } 
-
     return NULL;
 
 }
@@ -152,15 +150,15 @@ template<class T>
 void Arvore<T>::recursaoPrinta(No<T> *no){
     cout<<*no;
     if(no->getEsq()==NULL){
-        cout<<"No Esquerdo: NULL"<<endl;
+        //cout<<"No Esquerdo: NULL"<<endl;
     }else{
-        cout<<"No Esquerdo: "<<endl;
+        //cout<<"No Esquerdo: "<<endl;
         recursaoPrinta(no->getEsq());
     }
     if(no->getDir()==NULL){
-        cout<<"No Direito: NULL"<<endl;
+        //cout<<"No Direito: NULL"<<endl;
     }else{
-        cout<<"No Direito: "<<endl;
+        //cout<<"No Direito: "<<endl;
         recursaoPrinta(no->getDir());
     }
 }

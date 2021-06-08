@@ -3,11 +3,15 @@
 
 #include"Paciente.h"
 #include"Arvore.h"
-
+#include"Erros.h"
 using namespace std;
 
 class Cadastro{
     public:
+
+
+    virtual const char* what() const throw();
+
     void inserePaciente();
     void buscaPaciente();
     void imprimeArvore();

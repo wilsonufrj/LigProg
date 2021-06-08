@@ -19,12 +19,21 @@ int main(){
         getline(cin,opcao);
         switch(stoi(opcao)){
             case 1:{
-                //cout<<"Opcao 1 Escolhida"<<endl;
-                cadastro.inserePaciente();
+                try{
+                    cadastro.inserePaciente();
+                }catch(Erros &e){
+                    cout<<"Exception disparada: "<<
+                    e.what()<<endl;
+                }
                 break;
             }
             case 2: {
-                cadastro.buscaPaciente();
+                try{
+                    cadastro.buscaPaciente();
+                }catch(Erros &e){
+                    cout<<"Exception disparada: "<<
+                    e.what()<<endl;
+                }
                 break;
             }
             case 3:{

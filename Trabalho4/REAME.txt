@@ -1,0 +1,13 @@
+Para Rodar o código basta digitar o comando make
+Para executar basta digitar make rodar
+
+Na funcao principal devem ser digitados apenas numeros no menu, qualquer
+letra ou tecla diferente da erro na funca stoi.
+Após a inclusao do terceiro paciente o programa dispara um erro mas caso for um paciente novo o programa vai adicionar na arvore binária.
+Pacientes com o mesmo nome com letra maiuscula e minuscula são inclusos na arvore.
+No cadastro de um novo paciente a opção idade deve ser um numero
+No cadastro de um novo paciente na opção doença caso ele tenha mais de uma deve ser
+separada por virgula
+
+Na busca pelo paciente o nome inserido deve esta escrito de maneira correta, caso 
+contario um erro será exibido na tela.
