@@ -24,6 +24,7 @@ int main(){
                 break;
             case 4:
                 crud.atualizaProduto();
+                break;
             case 5:
                 crud.buscaColecao();
                 break;

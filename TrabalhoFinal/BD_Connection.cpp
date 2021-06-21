@@ -2,15 +2,10 @@
 
 BD_Connection::BD_Connection(const char* servidor,const char* usuario,const char* senha,const char*database):
 servidor(servidor),usuario(usuario),senha(senha),bd(database){
+    connection_config();
 }
 
 BD_Connection::~BD_Connection(){
-    //FICAR DE OLHO
-    /* free(conexao);
-    free(stmt);
-    free(pstmt);
-    free(resultado);  */
-
 }
 
 void BD_Connection::connection_config(){
@@ -27,15 +22,10 @@ void BD_Connection::connection_config(){
 
 }
 
-//OK PARCIAL FALTA PRINTAR O NUMERO DE ID E INICIAR CASO NAO HAJA BANCO OU TABELA 
 void BD_Connection::mysql_querysInserir(Produto &produto){
+    connection_config();
     conexao->setSchema("projetoFinal2");
     stmt = conexao->createStatement();
-
-    //idUniversal = stmt->getMaxRows();
-    //stmt->execute("DROP TABLE IF EXISTS PRODUTO");
-
-    //stmt->execute("CREATE TABLE PRODUTO (ID int AUTO_INCREMENT, nome varchar(50), nomeColecao varchar(50),descricao varchar(255), preco float, ano int,estacao varchar(50),PRIMARY KEY(ID));");
 
     pstmt = conexao->prepareStatement("INSERT INTO PRODUTO(nome,nomeColecao,descricao,preco,ano,estacao) VALUES(?,?,?,?,?,?)");
     pstmt->setString(1, produto.getNome());
@@ -50,7 +40,6 @@ void BD_Connection::mysql_querysInserir(Produto &produto){
     
 }
 
-//OK PARCIALMENTE FALTA TRATAR QUANDO A ENTRADA EH MAIOR QUE O NUMERO DE LINHAS
 Produto* BD_Connection::mysql_queryPegaProduto(string id){
     connection_config();
     Produto *auxProduto = new Produto;
@@ -61,7 +50,6 @@ Produto* BD_Connection::mysql_queryPegaProduto(string id){
         
         //ENCONTRA UMA LINHA
         while(resultado->next()){
-            //printf("Reading from table=(%d, %s, %d)\n", resultado->getInt(1), resultado->getString(2).c_str(), resultado->getInt(3));
             //PERCORRE TODAS AS COLUNAS DESSA LINHA
             if(resultado->getInt(1) == stoi(id)){
                 auxProduto->setNome(resultado->getString(2));
@@ -80,7 +68,6 @@ Produto* BD_Connection::mysql_queryPegaProduto(string id){
     return NULL;
 }
 
-//OK PARCIALMENTE FALTA TRATAR QUANDO A ENTRADA NAO FOR UM NUMERO VALIDO
 void BD_Connection::mysql_deletarProduto(string id){
     connection_config();
     conexao->setSchema("projetoFinal2");
@@ -149,7 +136,6 @@ void BD_Connection::mysql_printaEstacoes(){
             adicionaEstacao.push_back(resultado->getString(7));
         }else{
             for(long unsigned int i=0; i<adicionaEstacao.size();i++){
-                //cout<<"BD : "<<resultado->getString(7)<<"\t Vetor: "<<adicionaEstacao[i]<<endl;
                 if(adicionaEstacao[i].compare(resultado->getString(7))==0){
                     encontraEstacao=true;
                 }

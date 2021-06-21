@@ -37,7 +37,7 @@ void CRUD::inserirProduto(){
     
 }
 
- //OK (MAS PRECISA VERIFICAR QUANDO A ENTRADA NAO EH UM NUMERO VALIDO)
+ //OK
 void CRUD::buscaProduto(){
     system("clear");
     string codigo;
@@ -45,7 +45,10 @@ void CRUD::buscaProduto(){
     getline(cin,codigo);
 
     Produto *ptrProduto = BD_Connection::mysql_queryPegaProduto(codigo);
-    cout<<*ptrProduto;
+    if(ptrProduto==NULL){
+        cout<<"Produto nao encontrado..."<<endl;
+    }else
+        cout<<*ptrProduto;
 
 }
 
@@ -56,17 +59,19 @@ void CRUD::deletaProduto(){
     getline(cin,codigo);
 
     Produto *ptrProduto = BD_Connection::mysql_queryPegaProduto(codigo);
-    cout<<*ptrProduto;
-    if(ptrProduto!=NULL){
+    if(ptrProduto==NULL){
+        cout<<"Produto nao encontrado.."<<endl;
+    }else{
+        cout<<*ptrProduto;
         cout<<"Deseja realmente excluir esse produto? Pressione s para sim e qualquer outra tecla para voltar ao menu inicial"<<endl;
         getline(cin,escolha);
         if(escolha=="s"){
             BD_Connection::mysql_deletarProduto(codigo);
         }else 
             cout<<"Voltando ao menu inicial..."<<endl;
-    }else{
-        cout<<"Produto nao encontrado.."<<endl;
     }
+        
+        
 } 
 
 void CRUD::atualizaProduto(){
@@ -75,41 +80,46 @@ void CRUD::atualizaProduto(){
     cout<<"Digite o codigo de identificacao do Produto para ser atualizado"<<endl;
     getline(cin,codigo);
 
-    cout<<*BD_Connection::mysql_queryPegaProduto(codigo);
-    cout<<"Qual dos atributos abaixo sera modificado"<<endl;
-    cout<<"1 - Nome"<<endl;
-    cout<<"2 - Nome colecao"<<endl;
-    cout<<"3 - Descricao"<<endl;
-    cout<<"4 - Preco"<<endl;
-    cout<<"5 - Ano"<<endl;
-    cout<<"6 - Estacao"<<endl;
-    getline(cin,escolha);
-    cout<<"\nNovo valor eh: "<<endl;
-    getline(cin,valor);
+    Produto *ptrProduto = BD_Connection::mysql_queryPegaProduto(codigo);
+    if(ptrProduto==NULL){
+        cout<<"Produto Invalido"<<endl;
+    }else{
+        cout<<*ptrProduto;
+        cout<<"Qual dos atributos abaixo sera modificado"<<endl;
+        cout<<"1 - Nome"<<endl;
+        cout<<"2 - Nome colecao"<<endl;
+        cout<<"3 - Descricao"<<endl;
+        cout<<"4 - Preco"<<endl;
+        cout<<"5 - Ano"<<endl;
+        cout<<"6 - Estacao"<<endl;
+        getline(cin,escolha);
+        cout<<"\nNovo valor eh: "<<endl;
+        getline(cin,valor);
 
-    switch (stoi(escolha))
-    {
-    case 1:
-        BD_Connection::mysql_atualizaProduto(codigo,"nome",valor);
-        break;
-    case 2:
-        BD_Connection::mysql_atualizaProduto(codigo,"nomeColecao",valor);
-        break;
-    case 3:
-        BD_Connection::mysql_atualizaProduto(codigo,"descricao",valor);
-        break;
-    case 4:
-        BD_Connection::mysql_atualizaProduto(codigo,"preco",stof(valor));
-        break;
-    case 5:
-        BD_Connection::mysql_atualizaProduto(codigo,"ano",stoi(valor));
-        break;
-    case 6:
-        BD_Connection::mysql_atualizaProduto(codigo,"estacao",valor);
-        break;
-    default:
-        cout<<"Opcao invalida..."<<endl;
-        break;
+        switch (stoi(escolha))
+        {
+        case 1:
+            BD_Connection::mysql_atualizaProduto(codigo,"nome",valor);
+            break;
+        case 2:
+            BD_Connection::mysql_atualizaProduto(codigo,"nomeColecao",valor);
+            break;
+        case 3:
+            BD_Connection::mysql_atualizaProduto(codigo,"descricao",valor);
+            break;
+        case 4:
+            BD_Connection::mysql_atualizaProduto(codigo,"preco",stof(valor));
+            break;
+        case 5:
+            BD_Connection::mysql_atualizaProduto(codigo,"ano",stoi(valor));
+            break;
+        case 6:
+            BD_Connection::mysql_atualizaProduto(codigo,"estacao",valor);
+            break;
+        default:
+            cout<<"Opcao invalida..."<<endl;
+            break;
+        }
     }
 }
 

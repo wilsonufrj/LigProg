@@ -17,7 +17,6 @@ using namespace std;
 
 class BD_Connection{
     
-    //FAZER FUNCAO PARA CRIAR O BANCO CASO ELE NAO EXISTA
     public:
     BD_Connection(const char* servidor = "localhost"
                   ,const char* usuario ="root"
